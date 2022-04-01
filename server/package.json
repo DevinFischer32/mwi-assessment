@@ -1,12 +1,13 @@
 {
-  "name": "api",
+  "name": "server",
   "version": "1.0.0",
-  "description": "",
+  "description": "Api for Lorem Ipsum and Titles",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "client": "cd ../mwi-assessment && npm run dev",
-    "dev": "concurrently \"npm run start\" \"npm run client\""
+    "dev": "concurrently \"npm run start\" \"npm run client\"",
+    "seed": "node db/seed.sql"
   },
   "keywords": [],
   "author": "",

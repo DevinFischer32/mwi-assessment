@@ -1,18 +1,17 @@
 import Link from "next/link";
-import Image from "next/dist/client/image";
-import React, { useState } from "react";
+import Image from "next/image";
+import React, { useState, useEffect } from "react";
 import HomeContent from "../components/homeContent";
+import Header from "../components/header";
 import Talkie from "../public/Talkie.svg";
 import Rabbit from "../public/Rabbit.svg";
 import Sheild from "../public/Shield.svg";
-import Logo from "../public/Logo.svg";
 
 export default function Home({ content }) {
   const [clickedLink, setClickedLink] = useState(false);
   const [revealPuzzle, setRevealPuzzle] = useState(false);
   const [message, setMessage] = useState("");
 
-  console.log(content);
   const obj1 = [
     { name: "Matt Johnson" },
     { name: "Matt Johnson" },
@@ -31,7 +30,7 @@ export default function Home({ content }) {
 
   let merged = [...obj1, ...obj2];
   let set = new Set();
-  let arr = merged.filter((item) => {
+  let finalMerge = merged.filter((item) => {
     if (!set.has(item.name)) {
       set.add(item.name);
       return true;
@@ -50,34 +49,26 @@ export default function Home({ content }) {
     }
   };
 
-  return (
-    <section className="p-2 ">
-      <header className="p-4 mt-2 mb-2 flex justify-between  items-center">
-        <div className="w-4/6 h-12 relative">
-          <Image
-            layout="fill"
-            objectFit="contain"
-            src={Logo}
-            alt="Midwestern Logo"
-          ></Image>
-        </div>
-        <Link href="/contact">
-          <a className="text-gold font-poppins_bold">contact</a>
-        </Link>
-      </header>
+  useEffect(() => {
+    clickedLink && puzzle();
+  }, [clickedLink]);
 
-      <section>
+  return (
+    <section className="p-2 sm:p-10 lg:px-8 lg:py-4  ">
+      <Header href="/contact" path="contact" cn="home_header" />
+
+      <section className="flex flex-col items-center justify-items-center  lg:grid  lg:grid-cols-3 ">
         {content &&
-          content.map((contentData) => {
+          content.map((contentData, idx) => {
             let icon;
             let alt;
-            if (contentData.id === 1) {
+            if (idx === 0) {
               icon = Talkie;
               alt = "Walkie Talkie";
-            } else if (contentData.id === 2) {
+            } else if (idx === 1) {
               icon = Rabbit;
               alt = "Rabbit";
-            } else if (contentData.id === 3) {
+            } else if (idx === 2) {
               icon = Sheild;
               alt = "Sheild";
             }
@@ -93,8 +84,12 @@ export default function Home({ content }) {
       </section>
 
       <footer className="m-4 mt-8 relative">
-        {message && <div className="absolute top-10 text-Red">{message}</div>}
-        <h1 className="text-5xl mb-10 font-poppins_bold">
+        {message && (
+          <div className="absolute top-14 md:top-10 lg:top-10 text-Red">
+            {message}
+          </div>
+        )}
+        <h1 className="text-4xl mb-10 font-poppins_bold md:text-5xl ">
           <span className="border-gold pb-1 border-b-4">Heading</span> One
         </h1>
         <p className="mt-6 text-base">
@@ -105,17 +100,18 @@ export default function Home({ content }) {
             className="border-gold border-b-2 text-gold"
             onClick={() => {
               setClickedLink(true);
+              console.log("click");
               puzzle();
             }}
           >
             this link
           </span>{" "}
           is clicked. If the operation has been completed already, notify the
-          user that this has already been done{" "}
+          user that this has already been done.{" "}
         </p>
         <ul className={revealPuzzle ? "text-gold" : "hidden"}>
-          {arr &&
-            arr.map((name, idx) => {
+          {finalMerge &&
+            finalMerge.map((name, idx) => {
               return <li key={idx}>{name.name}</li>;
             })}
         </ul>

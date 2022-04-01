@@ -3,7 +3,7 @@ module.exports = {
     const db = req.app.get("db");
     const { firstName, lastName, title, email, message } = req.body;
 
-    await db.new_message([firstName, lastName, title, email, message]);
+    await db.new_contact_message([firstName, lastName, title, email, message]);
     res.status(200).send("Success");
   },
 

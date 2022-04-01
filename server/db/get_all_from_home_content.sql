@@ -1,1 +1,0 @@
-SELECT * FROM home_content;

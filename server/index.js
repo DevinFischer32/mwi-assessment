@@ -1,8 +1,7 @@
 const express = require("express");
 const massive = require("massive");
-const dotenv = require("dotenv");
 const cors = require("cors");
-dotenv.config();
+require("dotenv").config();
 
 const ctrl = require("./controller/apiCtrl");
 
