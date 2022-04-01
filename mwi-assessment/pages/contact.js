@@ -1,9 +1,7 @@
-import Link from "next/link";
-import Image from "next/image";
-import Logo from "../public/Logo.svg";
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import Header from "../components/header";
+import Input from "../components/input";
+import axios from "axios";
 
 export default function Contact({ contactContent }) {
   const [firstName, setFirstName] = useState("");
@@ -11,6 +9,7 @@ export default function Contact({ contactContent }) {
   const [title, setTitle] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [response, setResponse] = useState("");
 
   const [firstNameValid, setFirstNameValid] = useState(false);
   const [lastNameValid, setLastNameValid] = useState(false);
@@ -93,128 +92,56 @@ export default function Contact({ contactContent }) {
           onSubmit={handleSubmit}
         >
           <div className="lg:flex lg:justify-between w-full">
-            <div className="relative  lg:w-11/12">
-              <input
-                autoComplete="off"
-                className={
-                  firstNameValid
-                    ? "inputs-primary"
-                    : submitTried && !firstNameValid
-                    ? "inputs-primary ring-2 ring-Red"
-                    : "inputs-primary"
-                }
-                type="text"
-                placeholder="First Name"
-                onChange={(e) => setFirstName(e.target.value)}
-                value={firstName}
-              />
-              <p
-                className={
-                  firstNameValid
-                    ? "hidden"
-                    : submitTried
-                    ? "absolute right-2 top-4 z-10 text-Red lg:right-10"
-                    : "hidden"
-                }
-              >
-                Required
-              </p>
-            </div>
-
-            <div className="relative  lg:w-11/12 lg:flex lg:justify-end ">
-              <input
-                autoComplete="off"
-                className={
-                  lastNameValid
-                    ? "inputs-primary"
-                    : submitTried && !lastNameValid
-                    ? "inputs-primary ring-2 ring-Red   "
-                    : "inputs-primary"
-                }
-                type="text"
-                placeholder="Last Name"
-                onChange={(e) => setLastName(e.target.value)}
-                value={lastName}
-              />
-              <p
-                className={
-                  lastNameValid
-                    ? "hidden"
-                    : submitTried
-                    ? "absolute right-2 top-4 z-10 text-Red lg:right-1"
-                    : "hidden"
-                }
-              >
-                Required
-              </p>
-            </div>
+            <Input
+              divClass="input-div-left"
+              errorClass="form-error-left"
+              isValid={firstNameValid}
+              submitTried={submitTried}
+              onChange={setFirstName}
+              placeholder="First Name"
+              value={firstName}
+            />
+            <Input
+              divClass="input-div-right"
+              errorClass="form-error-right"
+              isValid={lastNameValid}
+              submitTried={submitTried}
+              onChange={setLastName}
+              placeholder="Last Name"
+              value={lastName}
+            />
           </div>
 
           <div className="lg:flex lg:justify-between lg:w-full">
-            <div className="relative  lg:w-11/12">
-              <input
-                autoComplete="off"
-                className={
-                  titleValid
-                    ? "inputs-primary"
-                    : submitTried && !titleValid
-                    ? "inputs-primary ring-2 ring-Red"
-                    : "inputs-primary"
-                }
-                type="text"
-                placeholder="Title"
-                onChange={(e) => setTitle(e.target.value)}
-                value={title}
-              />
-              <p
-                className={
-                  titleValid
-                    ? "hidden"
-                    : submitTried
-                    ? "absolute right-2 top-4 z-10 text-Red lg:right-10"
-                    : "hidden"
-                }
-              >
-                Required
-              </p>
-            </div>
-            <div className="relative lg:w-11/12 lg:flex lg:justify-end">
-              <input
-                autoComplete="off"
-                className={
-                  emailValid
-                    ? "inputs-primary"
-                    : submitTried && !emailValid
-                    ? "inputs-primary ring-2 ring-Red"
-                    : "inputs-primary"
-                }
-                type="text"
-                placeholder="Email"
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
-              />
-              <p
-                className={
-                  emailValid
-                    ? "hidden"
-                    : submitTried
-                    ? "absolute right-2 top-4 z-10 text-Red lg:right-1"
-                    : "hidden"
-                }
-              >
-                Required
-              </p>
-            </div>
+            <Input
+              divClass="input-div-left"
+              errorClass="form-error-left"
+              isValid={titleValid}
+              submitTried={submitTried}
+              onChange={setTitle}
+              placeholder="Title"
+              value={title}
+            />
+
+            <Input
+              divClass="input-div-right"
+              errorClass="form-error-right"
+              isValid={emailValid}
+              submitTried={submitTried}
+              onChange={setEmail}
+              placeholder="Email"
+              value={email}
+            />
           </div>
           <div className="relative">
             <textarea
               autoComplete="off"
               className={
                 messageValid
-                  ? "h-32 placeholder:text-midGray focus:outline-none focus:ring-0  text-midGray pl-2 bg-lightGray w-full py-2 pr-3 mb-8 mt-2 "
+                  ? "textarea-primary"
                   : submitTried && !messageValid
-                  ? "h-32 placeholder:text-midGray focus:outline-none focus:ring-2 ring-2 ring-Red text-midGray pl-2 bg-lightGray w-full py-2 pr-3 mb-8 mt-2 "
-                  : "h-32 placeholder:text-midGray focus:outline-none focus:ring-0  text-midGray pl-2 bg-lightGray w-full py-2 pr-3 mb-8 mt-2 "
+                  ? "textarea-invalid"
+                  : "textarea-primary"
               }
               placeholder="Message"
               onChange={(e) => setMessage(e.target.value)}

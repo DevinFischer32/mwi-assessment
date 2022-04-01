@@ -1,11 +1,10 @@
-import Link from "next/link";
-import Image from "next/image";
 import React, { useState, useEffect } from "react";
-import HomeContent from "../components/homeContent";
 import Header from "../components/header";
-import Talkie from "../public/Talkie.svg";
-import Rabbit from "../public/Rabbit.svg";
-import Sheild from "../public/Shield.svg";
+import ContentContainer from "../components/contentContainer";
+
+import Talkie from "../public/icons/Talkie.svg";
+import Rabbit from "../public/icons/Rabbit.svg";
+import Sheild from "../public/icons/Shield.svg";
 
 export default function Home({ content }) {
   const [clickedLink, setClickedLink] = useState(false);
@@ -56,7 +55,6 @@ export default function Home({ content }) {
   return (
     <section className="p-2 sm:p-10 lg:px-8 lg:py-4  ">
       <Header href="/contact" path="contact" cn="home_header" />
-
       <section className="flex flex-col items-center justify-items-center  lg:grid  lg:grid-cols-3 ">
         {content &&
           content.map((contentData, idx) => {
@@ -73,7 +71,7 @@ export default function Home({ content }) {
               alt = "Sheild";
             }
             return (
-              <HomeContent
+              <ContentContainer
                 content={contentData}
                 key={contentData.id}
                 img={icon}
@@ -100,7 +98,6 @@ export default function Home({ content }) {
             className="border-gold border-b-2 text-gold"
             onClick={() => {
               setClickedLink(true);
-              console.log("click");
               puzzle();
             }}
           >

@@ -19,16 +19,37 @@
   }
 }
 @layer components {
+  .contact_header {
+    @apply my-3 p-2 flex justify-between items-center lg:absolute lg:top-0 lg:w-full lg:p-14;
+  }
+  .home_header {
+    @apply my-3 p-2 flex justify-between items-center  lg:top-0 lg:w-full lg:px-12;
+  }
   .btn-primary {
     @apply bg-gold p-2 w-32 h-11 m-5 text-xs text-white;
   }
   .inputs-primary {
     @apply max-h-14 h-10 my-2 w-full pl-2 bg-lightGray placeholder:text-midGray text-midGray focus:outline-none focus:ring-0 lg:w-11/12;
   }
-  .contact_header {
-    @apply my-3 p-2 flex justify-between items-center lg:absolute lg:top-0 lg:w-full lg:p-14;
+  .inputs-primary-invalid {
+    @apply max-h-14 h-10 my-2 w-full pl-2 bg-lightGray placeholder:text-midGray text-midGray focus:outline-none focus:ring-0 lg:w-11/12 ring-2 ring-Red;
   }
-  .home_header {
-    @apply my-3 p-2 flex justify-between items-center  lg:top-0 lg:w-full lg:px-12;
+  .textarea-primary {
+    @apply h-32 placeholder:text-midGray focus:outline-none focus:ring-0  text-midGray pl-2 bg-lightGray w-full py-2 pr-3 mb-8 mt-2;
+  }
+  .textarea-invalid {
+    @apply h-32 placeholder:text-midGray focus:outline-none focus:ring-2 ring-2 ring-Red text-midGray pl-2 bg-lightGray w-full py-2 pr-3 mb-8 mt-2;
+  }
+  .input-div-left {
+    @apply relative lg:w-11/12;
+  }
+  .input-div-right {
+    @apply relative lg:w-11/12 lg:flex lg:justify-end;
+  }
+  .form-error-left {
+    @apply absolute right-2 top-4 z-10 text-Red lg:right-10;
+  }
+  .form-error-right {
+    @apply absolute right-2 top-4 z-10 text-Red lg:right-1;
   }
 }
