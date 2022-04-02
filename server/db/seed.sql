@@ -30,3 +30,6 @@ CREATE TABLE contact (
    email VARCHAR(75) NOT NULL,
    message VARCHAR(255) NOT NULL
 );
+
+INSERT INTO contact (first_name, last_name, title, email, message)
+VALUES('Devin', 'Fischer', 'Software Engineer', 'Dev@dev.com', 'Nice to meet you!');

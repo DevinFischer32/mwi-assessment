@@ -2,6 +2,12 @@
 
 To run:
 
+Seeding Script:
+
+- cd server/ && npm run seed
+- cd server/
+- npm run seed
+
 This line Installs dependencies for both front and back end and Starts Both.
 
 - cd mwi-assessment/ && npm i && cd ../server/ && npm i && npm run dev

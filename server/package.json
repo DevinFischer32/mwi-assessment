@@ -7,7 +7,7 @@
     "start": "node index.js",
     "client": "cd ../mwi-assessment && npm run dev",
     "dev": "concurrently \"npm run start\" \"npm run client\"",
-    "seed": "node db/seed.sql"
+    "seed": "node seed.js"
   },
   "keywords": [],
   "author": "",
